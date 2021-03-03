@@ -1,0 +1,7 @@
+layout python /usr/bin/python3.8
+export PYTHONBREAKPOINT=ipdb.set_trace
+export GOOGLE_APPLICATION_CREDENTIALS=<absolute path to the mlflow_service_account's credentials file >/credentials.json
+export MLFLOW_TRACKING_URI=https://<deployed mlflow URI, taken from cloud run, take care to use https>
+export MLFLOW_TRACKING_USERNAME=<mlflow_tracking_username from GCP secret>
+export MLFLOW_TRACKING_PASSWORD=<mlflow_tracking_password from GCP secret>
+export MLFLOW_EXPERIMENT_NAME=new_experiment
