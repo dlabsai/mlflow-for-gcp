@@ -15,7 +15,7 @@ You need to install *GCP* CLI tools (`gcloud`) and configure it in order to push
 
 ### Service account
 
-Create a service account and set its privileges (`owner` is easiest).
+Create a service account and set its privileges (`owner` is easiest). The service account requires the following role in order to access Secret Manager secrets: `Secret Manager Secret Accessor`.
 
 ### Cloud SQL
 
