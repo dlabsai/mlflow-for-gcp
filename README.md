@@ -46,7 +46,9 @@ In *Secret Manager* you need to configure secrets that the `mlflow` image will r
 
 ### Container Registry
 
-You need to build, tag and push this docker image to the *Container Registry* in order to be able to use it to spin a *Cloud Run* deployment.
+You need to build, tag and push this docker image to the *Container Registry* in order to be able to use it to spin a *Cloud Run* deployment. How you build the image depends on your platform.
+
+#### Linux 64-bit Machines
 
 First thing you will need is a recent version of docker. Please mind the fact that system-provided versions of docker won't cut it. Please follow the installation instruction from official docker documentation: https://docs.docker.com/engine/install/ubuntu/.
 
@@ -67,6 +69,20 @@ then build, tag and push:
 ```sh
 make build && make tag && make push
 ```
+
+#### Non Linux 64-bit Machines
+
+According to the Google Cloud Run [documentation](https://cloud.google.com/run/docs/troubleshooting#container-failed-to-start), the container image must be compiled for 64-bit Linux. If you aren't on a 64-bit Linux machine, you may instead build the image using Google Cloud Build. 
+
+1. Navigate to the [Cloud Build](https://console.cloud.google.com/cloud-build) page and activate it.
+1. Build and push with the following commands, replacing the variables as desired:
+    ````
+    IMAGE_NAME=mlflow-gcp
+    VERSION=0.20
+    GCP_PROJECT=urbn-data-science
+    IMAGE_URL="gcr.io/${GCP_PROJECT}/${IMAGE_NAME}:${VERSION}"
+    gcloud builds submit --tag $IMAGE_URL
+    ````
 
 ### Cloud Run
 
