@@ -1,10 +1,14 @@
 import base64
+import os
 import pickle
 import random
 import tempfile
 from pathlib import Path
 
 import mlflow
+from mlflow import MlflowException
+
+from load_values import load_env_values
 
 PONY = """
 iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAHh0lEQVRYw61Xa2wU1xk9d96z7/Wu
@@ -47,14 +51,22 @@ kiVxKwAHpVAVRXk3nUm+C+DCprZW9X54/wfaeRiPgPVMkQAAAABJRU5ErkJggg==
 )
 
 
-def main():
+
+def main() -> None:
     print("STARTING")
+    load_env_values(".env")
+
+    try:
+        mlflow.create_experiment(os.environ["EXPERIMENT_NAME"], os.environ["BUCKET_URL"])
+    except MlflowException:
+        pass
+
+    mlflow.set_experiment(os.environ["EXPERIMENT_NAME"])
+
     with mlflow.start_run(run_name="zupa"):
         mlflow.log_param("a", random.choice([1, 2, 3, 5, 7]))
         for epoch in range(10):
-            mlflow.log_metric(
-                "m", 2 * epoch * epoch + random.random() - 0.5, step=epoch
-            )
+            mlflow.log_metric("m", 2 * epoch * epoch + random.random() - 0.5, step=epoch)
         with tempfile.TemporaryDirectory() as temp_dir:
             temp_dir_path = Path(temp_dir)
 

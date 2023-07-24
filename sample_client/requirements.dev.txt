@@ -1,4 +1,0 @@
-ipdb
-flake8
-mypy
-black
