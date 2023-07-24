@@ -1,12 +1,12 @@
 FROM python:3.8-slim
 
+# displays logs imidietly to the stream, they wont be part of the buffer
 ENV PYTHONUNBUFFERED True
 
 WORKDIR /app
 
 COPY ./requirements.txt ./requirements.txt
 
-# pandas installed from ubuntu repos to avoid building C extensions
 RUN pip install -r requirements.txt
 
 COPY get_secret.py /app/get_secret.py
