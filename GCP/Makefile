@@ -1,5 +1,6 @@
 IMAGE_NAME=mlflow-gcp
-VERSION=0.20
+GCP_PROJECT=test-ml-flow-terraform
+VERSION=latest
 build:
 	docker build -t "${IMAGE_NAME}" .
 
