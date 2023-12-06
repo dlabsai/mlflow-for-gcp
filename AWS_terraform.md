@@ -24,7 +24,7 @@
 
 ## Create ECR and push image
 - create ECR using command `terraform apply -target=aws_ecr_repository.mlflow_ecr`
-- build image base on Dockerfile from `/mlflow-gcp/AWS`
+- build image based on Dockerfile from `/mlflow-gcp/AWS`
 - upload image to ECR with tag `latest` - [official instruction](https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html)
 
 
