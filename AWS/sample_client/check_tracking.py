@@ -73,12 +73,12 @@ def main() -> None:
             model_file_path = temp_dir_path / "model.pickle"
             with open(model_file_path, "wb") as f:
                 pickle.dump({"zupa": "grzybowa"}, f)
-            mlflow.log_artifact(model_file_path)
+            mlflow.log_artifact(str(model_file_path))
 
             image_file_path = temp_dir_path / "pony.png"
             with open(image_file_path, "wb") as f:
                 f.write(base64.b64decode(PONY))
-            mlflow.log_artifact(image_file_path)
+            mlflow.log_artifact(str(image_file_path))
     print("DONE")
 
 
