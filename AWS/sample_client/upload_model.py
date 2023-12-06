@@ -9,6 +9,13 @@ from load_values import load_env_values
 
 load_env_values(".env")
 
+try:
+    mlflow.create_experiment(os.environ["EXPERIMENT_NAME"], os.environ["BUCKET_URL"])
+except mlflow.MlflowException:
+    pass
+
+mlflow.set_experiment(os.environ["EXPERIMENT_NAME"])
+
 with mlflow.start_run():
     # load dataset and train model
     iris = load_iris()
