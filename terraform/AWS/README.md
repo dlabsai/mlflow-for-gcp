@@ -4,7 +4,7 @@
 
 `db.tf` - Postgres database set up using RDS, database details are stored in parameters.
 
-`ecr.tf` - ERC that will hold our container.
+`ecr.tf` - ECR that will hold our container.
 
 `ecs.tf` - Definition of an ECS service.
 
