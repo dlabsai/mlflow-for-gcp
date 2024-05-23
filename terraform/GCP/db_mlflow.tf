@@ -23,7 +23,7 @@ resource "google_secret_manager_secret" "db_login_ml_flow" {
   secret_id = "mlflow_tracking_username"
   project   = var.project_name
   replication {
-    automatic = true
+    auto {}
   }
 }
 
@@ -45,7 +45,7 @@ resource "google_secret_manager_secret" "db_password_ml_flow" {
   secret_id = "mlflow_tracking_password"
   project   = var.project_name
   replication {
-    automatic = true
+    auto {}
   }
 }
 
@@ -61,7 +61,7 @@ resource "google_secret_manager_secret" "mlflow_database_url" {
   secret_id = "mlflow_database_url"
   project   = var.project_name
   replication {
-    automatic = true
+    auto {}
   }
 }
 
